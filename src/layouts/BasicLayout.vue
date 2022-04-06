@@ -1,22 +1,46 @@
 <template>
   <a-layout has-sider>
-    <AppSider />
-    <a-layout :style="{ marginLeft: '200px' }">
-      <AppHeader />
+    <app-sider
+      :collapsed="collapsed"
+    />
+    <a-layout :style="{ marginLeft: collapsed ? '80px' : '200px' }">
+      <app-header
+        :collapsed="collapsed"
+        @fold="handleFold"
+      />
       <a-layout-content>
         <router-view />
-        <div style="height: 500px"></div>
+        <div style="height: 1500px"></div>
       </a-layout-content>
-      <AppFooter />
+      <app-footer />
     </a-layout>
   </a-layout>
 </template>
 
-<script setup>
+<script>
+import { ref } from 'vue';
 import AppSider from './AppSider.vue';
 import AppHeader from './AppHeader.vue';
 import AppFooter from './AppFooter.vue';
 
+export default {
+  components: {
+    AppSider,
+    AppHeader,
+    AppFooter,
+  },
+  setup() {
+    const collapsed = ref(false);
+    const handleFold = () => {
+      collapsed.value = !collapsed.value;
+    };
+
+    return {
+      collapsed,
+      handleFold,
+    };
+  },
+};
 </script>
 
 <style lang='less' scoped>

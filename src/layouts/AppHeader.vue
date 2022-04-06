@@ -1,15 +1,17 @@
 <template>
   <a-layout-header
-    :style="{ }"
+    :style="{ left: collapsed ? '80px' : '200px' }"
     class="header-box">
     <div class="header-fold">
-      <component :is="collapsed ? 'MenuFoldOutlined' : 'MenuUnfoldOutlined'" />
+      <component
+        :is="collapsed ? 'MenuUnfoldOutlined' : 'MenuFoldOutlined'"
+        @click="$emit('fold')"
+      />
     </div>
   </a-layout-header>
 </template>
 
 <script>
-import { ref } from 'vue';
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
@@ -20,11 +22,14 @@ export default {
     MenuFoldOutlined,
     MenuUnfoldOutlined,
   },
+  props: {
+    collapsed: {
+      type: Boolean,
+      required: true,
+    },
+  },
   setup() {
-    const collapsed = ref(true);
-    return {
-      collapsed,
-    };
+    return {};
   },
 };
 </script>
@@ -32,13 +37,20 @@ export default {
 <style lang='less' scoped>
 .header {
   &-box {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    padding: 0 16px;
     background-color: #fff;
   }
 
   &-fold {
+    display: inline-block;
     height: 64px;
     line-height: 64px;
     font-size: 24px;
+    cursor: pointer;
   }
 }
 </style>

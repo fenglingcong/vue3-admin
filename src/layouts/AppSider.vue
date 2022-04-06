@@ -8,7 +8,7 @@
       height: '100vh',
       overflow: 'auto',
     }"
-    v-model="collapsed"
+    :collapsed="collapsed"
     :trigger="null"
     collapsible>
     <div class="sider-logo">
@@ -17,9 +17,6 @@
           class="sider-logo__img"
         />
         <span class="sider-logo__text">管理系统</span>
-      </div>
-      <div class="sider-fold">
-        <component :is="collapsed ? 'MenuFoldOutlined' : 'MenuUnfoldOutlined'" />
       </div>
     </div>
     <a-menu
@@ -37,26 +34,23 @@
 </template>
 
 <script>
-import { ref } from 'vue';
 import { asyncRoutes } from '@/config/routes/index';
-import {
-  SmileFilled,
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
-} from '@ant-design/icons-vue';
+import { SmileFilled } from '@ant-design/icons-vue';
 
 export default {
   components: {
     SmileFilled,
-    MenuFoldOutlined,
-    MenuUnfoldOutlined,
+  },
+  props: {
+    collapsed: {
+      type: Boolean,
+      required: true,
+    },
   },
   setup() {
     const menus = asyncRoutes[0].children;
-    const collapsed = ref(true);
     return {
       menus,
-      collapsed,
     };
   },
 };
