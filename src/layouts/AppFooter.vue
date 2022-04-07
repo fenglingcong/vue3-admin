@@ -1,10 +1,5 @@
 <template>
-  <a-layout-footer>footer</a-layout-footer>
+  <a-layout-footer :style="{ textAlign: 'center' }">
+    Copyright ©2022 One Smile
+  </a-layout-footer>
 </template>
-
-<script setup>
-
-</script>
-
-<style lang='less' scoped>
-</style>

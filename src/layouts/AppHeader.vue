@@ -1,6 +1,9 @@
 <template>
   <a-layout-header
-    :style="{ left: collapsed ? '80px' : '200px' }"
+    :style="{
+      left: collapsed ? '80px' : '200px',
+      transition: 'all 0.2s',
+    }"
     class="header-box">
     <div class="header-fold">
       <component

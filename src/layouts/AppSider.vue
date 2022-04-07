@@ -20,15 +20,43 @@
       </div>
     </div>
     <a-menu
+      mode="inline"
       theme="dark">
-      <a-menu-item
-        v-for="item in menus"
-        :key="item.name">
-        <template #icon>
-          <component :is="item.meta.icon" />
-        </template>
-        {{ item.meta.title }}
-      </a-menu-item>
+      <template v-for="item in menus">
+        <a-sub-menu
+          v-if="item.children && item.children.length"
+          :key="item.name">
+          <template #icon>
+            <component :is="item.meta.icon" />
+          </template>
+          <template #title>{{ item.meta.title }}</template>
+          <template v-for="subItem in item.children">
+            <a-sub-menu
+              v-if="subItem.children && subItem.children.length"
+              :key="subItem.name">
+              <template #title>{{ subItem.meta.title }}</template>
+              <a-menu-item
+                v-for="l3Item in subItem.children"
+                :key="l3Item.name">
+                {{ l3Item.meta.title }}
+              </a-menu-item>
+            </a-sub-menu>
+            <a-menu-item
+              v-else
+              :key="subItem.name">
+              {{ subItem.meta.title }}
+            </a-menu-item>
+          </template>
+        </a-sub-menu>
+        <a-menu-item
+          v-else
+          :key="item.name">
+          <template #icon>
+            <component :is="item.meta.icon" />
+          </template>
+          {{ item.meta.title }}
+        </a-menu-item>
+      </template>
     </a-menu>
   </a-layout-sider>
 </template>

@@ -3,14 +3,15 @@
     <app-sider
       :collapsed="collapsed"
     />
-    <a-layout :style="{ marginLeft: collapsed ? '80px' : '200px' }">
+    <a-layout
+      :style="{ marginLeft: collapsed ? '80px' : '200px' }"
+      class="app-main">
       <app-header
         :collapsed="collapsed"
         @fold="handleFold"
       />
-      <a-layout-content>
+      <a-layout-content :style="{ marginTop: '64px' }">
         <router-view />
-        <div style="height: 1500px"></div>
       </a-layout-content>
       <app-footer />
     </a-layout>
@@ -44,4 +45,9 @@ export default {
 </script>
 
 <style lang='less' scoped>
+.app {
+  &-main {
+    min-height: 100vh;
+  }
+}
 </style>
