@@ -37,14 +37,35 @@ module.exports = defineConfig({
         port: 0, // 指定port 只在port相同时 会热更新
       }, */
     },
-    proxy: {
+    /* proxy: {
       '/api': {
-        target: 'http://metoo-boss-dev.bw365.net', // dev
+        target: 'http://dev.com', // dev
         changeOrigin: true,
         pathRewrite: {
           '^/api': '',
         },
       },
+    }, */
+    // 详细配置参考 https://webpack.docschina.org/configuration/dev-server/#devserversetupmiddlewares
+    // mock数据
+    setupMiddlewares: (middlewares, devServer) => {
+      if (!devServer) {
+        throw new Error('webpack-dev-server is not defined');
+      }
+      devServer.app.post('/api/goods', (req, res) => {
+        res.json({
+          code: 1,
+          data: {
+            list: [{
+              name: '小名',
+              age: 18,
+              address: '杭州',
+            }],
+          },
+        });
+      });
+
+      return middlewares;
     },
   },
   configureWebpack: {

@@ -20,6 +20,7 @@ export default defineComponent({
         pageNum: 1,
       })
         .then((res) => {
+          console.log(res);
           loading.value = false;
           list.value = res.list;
         });
@@ -31,7 +32,7 @@ export default defineComponent({
       columns: [
         {
           title: '姓名',
-          dataIndex: 'talentName',
+          dataIndex: 'name',
         },
         {
           title: '年龄',
