@@ -1,7 +1,23 @@
 const { defineConfig } = require('@vue/cli-service');
+const CompressionWebpackPlugin = require('compression-webpack-plugin');
+
+/* const isProd = process.env.NODE_ENV === 'production';
+const assetsCDN = {
+  externals: {
+    vue: 'vue',
+    'vue-router': 'vue-router',
+  },
+  css: [],
+  js: [
+    '//cdn.jsdelivr.net/npm/vue@3.2.13/dist/vue.global.prod.js',
+    '//cdn.jsdelivr.net/npm/vue-router@4.0.3/dist/vue-router.global.prod.js',
+    // '//cdn.jsdelivr.net/npm/vuex@4.0.0/dist/vuex.global.prod.js',
+  ],
+}; */
 
 module.exports = defineConfig({
-  transpileDependencies: true,
+  transpileDependencies: false,
+  productionSourceMap: false,
   devServer: {
     open: true,
     host: 'local-ip',
@@ -22,4 +38,26 @@ module.exports = defineConfig({
       }, */
     },
   },
+  configureWebpack: {
+    plugins: [
+      // 压缩成 .gz 文件
+      new CompressionWebpackPlugin({
+        filename: '[path][base].gz',
+        algorithm: 'gzip',
+        test: /\.js$|\.css$|\.html$/,
+        threshold: 10240, // 压缩限制
+        minRatio: 0.8, // 压缩率
+        deleteOriginalAssets: false, // 删除源文件
+      }),
+    ],
+    // externals: isProd ? assetsCDN.externals : {},
+  },
+  /* chainWebpack: (config) => {
+    if (isProd) {
+      config.plugin('html').tap((args) => {
+        args[0].cdn = assetsCDN;
+        return args;
+      });
+    }
+  }, */
 });
