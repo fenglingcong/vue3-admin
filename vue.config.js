@@ -37,6 +37,15 @@ module.exports = defineConfig({
         port: 0, // 指定port 只在port相同时 会热更新
       }, */
     },
+    proxy: {
+      '/api': {
+        target: 'http://metoo-boss-dev.bw365.net', // dev
+        changeOrigin: true,
+        pathRewrite: {
+          '^/api': '',
+        },
+      },
+    },
   },
   configureWebpack: {
     plugins: [

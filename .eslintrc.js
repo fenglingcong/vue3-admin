@@ -21,6 +21,7 @@ module.exports = {
         props: true,
         ignorePropertyModificationsFor: [
           'args',
+          'config',
         ],
       },
     ],

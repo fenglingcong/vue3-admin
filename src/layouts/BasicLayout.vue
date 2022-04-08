@@ -10,7 +10,7 @@
         :collapsed="collapsed"
         @fold="handleFold"
       />
-      <a-layout-content :style="{ marginTop: '64px' }">
+      <a-layout-content class="app-content">
         <router-view />
       </a-layout-content>
       <app-footer />
@@ -48,6 +48,11 @@ export default {
 .app {
   &-main {
     min-height: 100vh;
+  }
+
+  &-content {
+    margin-top: 64px;
+    padding: 8px;
   }
 }
 </style>
