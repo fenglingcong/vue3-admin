@@ -5,6 +5,7 @@ import './registerServiceWorker';
 import router from './router';
 import store from './store';
 import 'ant-design-vue/dist/antd.css';
+import '@/style/app.less';
 
 import '@/permission';
 

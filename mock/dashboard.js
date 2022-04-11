@@ -1,6 +1,5 @@
 function mockApi(devServer, data) {
   devServer.app.post('/api/goods', (req, res) => {
-    console.log(req.body);
     res.json({
       code: 1,
       data,
@@ -26,6 +25,7 @@ const listData = {
     age: 18,
     address: '杭州',
   }, 99),
+  total: 99,
 };
 
 module.exports = {

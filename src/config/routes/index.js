@@ -73,13 +73,13 @@ export const asyncRoutes = [
         ],
       },
       {
-        path: '/home',
-        name: 'home1',
+        path: '/list',
+        name: 'list',
         meta: {
-          title: '首页',
+          title: '列表',
           icon: DesktopOutlined,
         },
-        component: () => import(/* webpackChunkName: "home" */ '@/views/SHome'),
+        component: () => import(/* webpackChunkName: "list" */ '@/views/list/TableList'),
       },
       {
         path: '/home',
