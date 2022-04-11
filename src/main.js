@@ -6,6 +6,8 @@ import router from './router';
 import store from './store';
 import 'ant-design-vue/dist/antd.css';
 
+import '@/permission';
+
 createApp(App)
   .use(Antd)
   .use(store)

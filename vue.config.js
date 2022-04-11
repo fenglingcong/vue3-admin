@@ -1,5 +1,6 @@
 const { defineConfig } = require('@vue/cli-service');
 const CompressionWebpackPlugin = require('compression-webpack-plugin');
+const mockApi = require('./mock');
 
 /* const isProd = process.env.NODE_ENV === 'production';
 const assetsCDN = {
@@ -52,18 +53,7 @@ module.exports = defineConfig({
       if (!devServer) {
         throw new Error('webpack-dev-server is not defined');
       }
-      devServer.app.post('/api/goods', (req, res) => {
-        res.json({
-          code: 1,
-          data: {
-            list: [{
-              name: '小名',
-              age: 18,
-              address: '杭州',
-            }],
-          },
-        });
-      });
+      mockApi.dashboard.getList(devServer);
 
       return middlewares;
     },

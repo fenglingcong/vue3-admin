@@ -15,7 +15,7 @@ const request = axios.create({
 // 拦截请求
 request.interceptors.request.use(
   (config) => {
-    const token = 'eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI5OTk5Iiwic3ViIjoiMTM4MDU3MTAwMDEiLCJpc3MiOiJtZXRvbyIsImlhdCI6MTY0OTQwODE1Nn0.kgraRuspn8lsQ69PdvtLEf8P52G4jx7BT89JyKEHagw';
+    const token = 'token';
     if (token) {
       config.headers.Token = token;
     }
