@@ -1,16 +1,18 @@
-export default function filterList(cacheList, name) {
-  let resList = [];
+import { reactive } from 'vue';
+
+export default function filterList(list, handleList) {
+  const queryParams = reactive({});
   const searchQuery = () => {
-    if (!name) {
-      resList = cacheList;
-    }
-    resList = cacheList.filter((v) => v.name.includes(name));
+    list.value = list.value.filter((v) => v.name.includes(queryParams.name));
+  };
+  const resetQuery = () => {
+    queryParams.name = '';
+    handleList();
   };
 
-  /* s */
   return {
-    resList,
+    queryParams,
     searchQuery,
-    // resetQuery,
+    resetQuery,
   };
 }

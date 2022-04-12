@@ -7,6 +7,7 @@ import store from './store';
 import 'ant-design-vue/dist/antd.css';
 import '@/style/app.less';
 
+import './mock/test';
 import '@/permission';
 
 createApp(App)

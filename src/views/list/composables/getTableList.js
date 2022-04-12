@@ -7,7 +7,10 @@ export default function getTableList() {
   const total = ref(0);
   const handleList = async () => {
     loading.value = true;
-    await getList()
+    await getList({
+      pageSize: 1,
+      pageNum: 10,
+    })
       .then((res) => {
         loading.value = false;
         list.value = res.list;

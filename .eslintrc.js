@@ -18,11 +18,7 @@ module.exports = {
     'no-param-reassign': [
       2,
       {
-        props: true,
-        ignorePropertyModificationsFor: [
-          'args',
-          'config',
-        ],
+        props: false,
       },
     ],
   },

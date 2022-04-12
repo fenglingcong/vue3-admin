@@ -44,11 +44,9 @@
 </template>
 
 <script>
-import {
-  defineComponent,
-  reactive,
-} from 'vue';
+import { defineComponent } from 'vue';
 import getTableList from './composables/getTableList';
+import filterList from './composables/filterList';
 
 export default defineComponent({
   setup() {
@@ -59,20 +57,11 @@ export default defineComponent({
       handleList,
     } = getTableList();
 
-    const cacheList = list.value;
-
-    const queryParams = reactive({});
-    const searchQuery = () => {
-      if (!queryParams.name) {
-        list.value = cacheList;
-      }
-      list.value = cacheList.filter((v) => v.name.includes(queryParams.name));
-    };
-
-    const resetQuery = () => {
-      queryParams.name = '';
-      list.value = cacheList;
-    };
+    const {
+      queryParams,
+      searchQuery,
+      resetQuery,
+    } = filterList(list, handleList);
 
     return {
       columns: [
@@ -92,7 +81,6 @@ export default defineComponent({
       loading,
       list,
       total,
-      handleList,
       queryParams,
       searchQuery,
       resetQuery,
