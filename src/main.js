@@ -9,9 +9,11 @@ import '@/style/app.less';
 
 import './mock/test';
 import '@/permission';
+import i18n from './locales';
 
 createApp(App)
   .use(Antd)
+  .use(i18n)
   .use(store)
   .use(router)
   .mount('#app');
