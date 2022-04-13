@@ -51,7 +51,7 @@
 
 <script>
 import { defineComponent } from 'vue';
-import { useI18n } from 'vue-i18n';
+import { useI18n } from 'vue-i18n/index';
 import getTableList from './composables/getTableList';
 import filterList from './composables/filterList';
 
@@ -72,7 +72,6 @@ export default defineComponent({
 
     const { locale } = useI18n({ useScope: 'global' });
     const changeLang = (lang) => {
-      console.log(lang);
       locale.value = lang;
     };
 

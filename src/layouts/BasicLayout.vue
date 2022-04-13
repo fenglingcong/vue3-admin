@@ -16,6 +16,9 @@
       <app-footer />
     </a-layout>
   </a-layout>
+
+  <set-theme-color
+  />
 </template>
 
 <script>
@@ -23,12 +26,14 @@ import { ref } from 'vue';
 import AppSider from './AppSider.vue';
 import AppHeader from './AppHeader.vue';
 import AppFooter from './AppFooter.vue';
+import SetThemeColor from './SetThemeColor.vue';
 
 export default {
   components: {
     AppSider,
     AppHeader,
     AppFooter,
+    SetThemeColor,
   },
   setup() {
     const collapsed = ref(false);
@@ -48,6 +53,7 @@ export default {
 .app {
   &-main {
     min-height: 100vh;
+    transition: all 0.2s;
   }
 
   &-content {

@@ -4,7 +4,7 @@ import App from './App.vue';
 import './registerServiceWorker';
 import router from './router';
 import store from './store';
-import 'ant-design-vue/dist/antd.css';
+import 'ant-design-vue/dist/antd.variable.min.css';
 import '@/style/app.less';
 
 import './mock/test';

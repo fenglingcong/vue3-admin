@@ -2,7 +2,6 @@
   <a-layout-header
     :style="{
       left: collapsed ? '80px' : '200px',
-      transition: 'all 0.2s',
     }"
     class="header-box">
     <div class="header-fold">
@@ -42,9 +41,10 @@ export default {
   &-box {
     position: fixed;
     top: 0;
-    right: 0;
-    width: 100%;
+    z-index: 9;
     padding: 0 16px;
+    transition: all 0.2s;
+    width: 100%;
     background-color: #fff;
   }
 
