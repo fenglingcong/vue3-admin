@@ -10,6 +10,11 @@
         @click="$emit('fold')"
       />
     </div>
+    <div class="header-info">
+      <switch-lang
+        class="header-info__lang"
+      />
+    </div>
   </a-layout-header>
 </template>
 
@@ -18,11 +23,13 @@ import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
 } from '@ant-design/icons-vue';
+import SwitchLang from './SwitchLang';
 
 export default {
   components: {
     MenuFoldOutlined,
     MenuUnfoldOutlined,
+    SwitchLang,
   },
   props: {
     collapsed: {
@@ -41,19 +48,27 @@ export default {
   &-box {
     position: fixed;
     top: 0;
+    right: 0;
     z-index: 9;
     padding: 0 16px;
     transition: all 0.2s;
-    width: 100%;
     background-color: #fff;
   }
 
   &-fold {
     display: inline-block;
-    height: 64px;
-    line-height: 64px;
     font-size: 24px;
     cursor: pointer;
+  }
+
+  &-info {
+    float: right;
+
+    /deep/ &__lang {
+      display: inline-block;
+      height: 100%;
+      font-size: 24px;
+    }
   }
 }
 </style>

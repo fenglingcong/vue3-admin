@@ -1,7 +1,7 @@
 <template>
   <a-card :bordered="false">
     <a-form layout="inline" class="app-filter-wrapper">
-      <a-form-item label="姓名">
+      <a-form-item :label="$t('name')">
         <a-input
           placeholder="请输入"
           v-model:value="queryParams.name"
@@ -29,12 +29,6 @@
       </a-form-item>
     </a-form>
 
-    <div class="mb15">
-      <a-button type="primary" @click="changeLang('zh-CN')">中文</a-button>
-      <a-button @click="changeLang('en-US')">英文</a-button>
-      {{ $t('name') }}
-    </div>
-
     <a-alert
       class="mb10"
       :message="`全部 ${total} 条`"
@@ -51,7 +45,6 @@
 
 <script>
 import { defineComponent } from 'vue';
-import { useI18n } from 'vue-i18n/index';
 import getTableList from './composables/getTableList';
 import filterList from './composables/filterList';
 
@@ -69,11 +62,6 @@ export default defineComponent({
       searchQuery,
       resetQuery,
     } = filterList(list, handleList);
-
-    const { locale } = useI18n({ useScope: 'global' });
-    const changeLang = (lang) => {
-      locale.value = lang;
-    };
 
     return {
       columns: [
@@ -96,7 +84,6 @@ export default defineComponent({
       queryParams,
       searchQuery,
       resetQuery,
-      changeLang,
     };
   },
 });
