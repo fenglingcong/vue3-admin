@@ -4,6 +4,7 @@ import { parse } from 'qs';
 Mock.mock('/api/test', (options) => {
   const data = parse(options.body);
   console.log(data);
+
   return {
     code: 1,
     data: Mock.mock({

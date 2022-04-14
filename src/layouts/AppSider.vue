@@ -16,45 +16,47 @@
         <SmileFilled
           class="sider-logo__img"
         />
-        <span class="sider-logo__text">管理系统</span>
+        <span class="sider-logo__text">{{ $t('menu.head') }}</span>
       </div>
     </div>
     <a-menu
       mode="inline"
-      theme="dark">
+      theme="dark"
+      :selectedKeys="selectedKeys"
+      @click="handleClick">
       <template v-for="item in menus">
         <a-sub-menu
           v-if="item.children && item.children.length"
-          :key="item.name">
+          :key="item.path">
           <template #icon>
             <component :is="item.meta.icon" />
           </template>
-          <template #title>{{ item.meta.title }}</template>
+          <template #title>{{ $t(`menu.${item.meta.title}`) }}</template>
           <template v-for="subItem in item.children">
             <a-sub-menu
               v-if="subItem.children && subItem.children.length"
-              :key="subItem.name">
-              <template #title>{{ subItem.meta.title }}</template>
+              :key="subItem.path">
+              <template #title>{{ $t(`menu.${subItem.meta.title}`) }}</template>
               <a-menu-item
                 v-for="l3Item in subItem.children"
-                :key="l3Item.name">
-                {{ l3Item.meta.title }}
+                :key="l3Item.path">
+                {{ $t(`menu.${l3Item.meta.title}`) }}
               </a-menu-item>
             </a-sub-menu>
             <a-menu-item
               v-else
-              :key="subItem.name">
-              {{ subItem.meta.title }}
+              :key="subItem.path">
+              {{ $t(`menu.${subItem.meta.title}`) }}
             </a-menu-item>
           </template>
         </a-sub-menu>
         <a-menu-item
           v-else
-          :key="item.name">
+          :key="item.path">
           <template #icon>
             <component :is="item.meta.icon" />
           </template>
-          {{ item.meta.title }}
+          {{ $t(`menu.${item.meta.title}`) }}
         </a-menu-item>
       </template>
     </a-menu>
@@ -62,6 +64,8 @@
 </template>
 
 <script>
+import { computed } from 'vue';
+import { useRouter, useRoute } from 'vue-router';
 import { asyncRoutes } from '@/config/routes/index';
 import { SmileFilled } from '@ant-design/icons-vue';
 
@@ -77,8 +81,20 @@ export default {
   },
   setup() {
     const menus = asyncRoutes[0].children;
+    const router = useRouter();
+    const route = useRoute();
+    const selectedKeys = computed(() => [route.path]);
+
+    const handleClick = ({ key }) => {
+      if (route.path !== key) {
+        router.push(key);
+      }
+    };
+
     return {
       menus,
+      selectedKeys,
+      handleClick,
     };
   },
 };

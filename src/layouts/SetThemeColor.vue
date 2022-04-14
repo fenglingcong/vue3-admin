@@ -2,7 +2,7 @@
   <a-modal
     v-model:visible="visible"
     :width="420"
-    title="设置"
+    :title="$t('action.set')"
     @ok="handleOk">
     <a-input
       class="theme-color"
@@ -24,9 +24,11 @@
 
 <script setup>
 import { ref } from 'vue';
+import { useI18n } from 'vue-i18n/index';
 import { ConfigProvider, message } from 'ant-design-vue';
 import { SettingOutlined } from '@ant-design/icons-vue';
 
+const { t } = useI18n();
 const visible = ref(false);
 const color = ref('#1890ff');
 const toggleModal = () => {
@@ -35,7 +37,7 @@ const toggleModal = () => {
 
 const handleOk = () => {
   if (!color.value) {
-    message.error('请选择');
+    message.error(t('common.pleaseSelect'));
     return;
   }
   ConfigProvider.config({

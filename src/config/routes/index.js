@@ -13,91 +13,29 @@ export const asyncRoutes = [
         path: '/home',
         name: 'home',
         meta: {
-          title: '首页',
+          title: 'home',
           icon: DesktopOutlined,
         },
-        component: RouteView,
-        children: [
-          {
-            path: '/home',
-            name: 'home7',
-            meta: {
-              title: '二级',
-            },
-            component: RouteView,
-            children: [
-              {
-                path: '/home',
-                name: 'home9',
-                meta: {
-                  title: '三级',
-                },
-                component: () => import(/* webpackChunkName: "home" */ '@/views/SHome'),
-              },
-              {
-                path: '/home',
-                name: 'home11',
-                meta: {
-                  title: '四级',
-                },
-                component: () => import(/* webpackChunkName: "home" */ '@/views/SHome'),
-              },
-            ],
-          },
-          {
-            path: '/home',
-            name: 'home13',
-            meta: {
-              title: '二1级',
-            },
-            component: RouteView,
-            children: [
-              {
-                path: '/home',
-                name: 'home14',
-                meta: {
-                  title: '三1级',
-                },
-                component: () => import(/* webpackChunkName: "home" */ '@/views/SHome'),
-              },
-              {
-                path: '/home',
-                name: 'home15',
-                meta: {
-                  title: '四1级',
-                },
-                component: () => import(/* webpackChunkName: "home" */ '@/views/SHome'),
-              },
-            ],
-          },
-        ],
+        component: () => import(/* webpackChunkName: "home" */ '@/views/SHome'),
       },
       {
         path: '/list',
         name: 'list',
         meta: {
-          title: '列表',
+          title: 'listPage',
           icon: DesktopOutlined,
         },
-        component: () => import(/* webpackChunkName: "list" */ '@/views/list/TableList'),
-      },
-      {
-        path: '/home',
-        name: 'home2',
-        meta: {
-          title: '首页',
-          icon: DesktopOutlined,
-        },
-        component: () => import(/* webpackChunkName: "home" */ '@/views/SHome'),
-      },
-      {
-        path: '/home',
-        name: 'home3',
-        meta: {
-          title: '首页',
-          icon: DesktopOutlined,
-        },
-        component: () => import(/* webpackChunkName: "home" */ '@/views/SHome'),
+        component: RouteView,
+        children: [
+          {
+            path: '/list/table',
+            name: 'listTable',
+            meta: {
+              title: 'tableList',
+            },
+            component: () => import(/* webpackChunkName: "list" */ '@/views/list/TableList'),
+          },
+        ],
       },
     ],
   },
