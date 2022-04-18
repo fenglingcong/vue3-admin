@@ -2,8 +2,16 @@
   <a-modal
     v-model:visible="visible"
     :width="420"
-    :title="$t('action.set')"
-    @ok="handleOk">
+    @ok="handleOk()">
+    <template #title>
+      {{ $t('action.set') }}
+      <a-button
+        size="small"
+        type="link"
+        @click="handleOk(true)">
+        {{ $t('action.reset') }}
+      </a-button>
+    </template>
     <a-input
       class="theme-color"
       type="color"
@@ -23,6 +31,7 @@
 </template>
 
 <script setup>
+import { useStore } from 'vuex';
 import { ref } from 'vue';
 import { useI18n } from 'vue-i18n/index';
 import { ConfigProvider, message } from 'ant-design-vue';
@@ -35,7 +44,12 @@ const toggleModal = () => {
   visible.value = !visible.value;
 };
 
-const handleOk = () => {
+const store = useStore();
+const handleOk = (reset = false) => {
+  console.log(reset);
+  if (reset) {
+    color.value = '#1890ff';
+  }
   if (!color.value) {
     message.error(t('common.pleaseSelect'));
     return;
@@ -45,6 +59,7 @@ const handleOk = () => {
       primaryColor: color.value,
     }),
   });
+  store.commit('SET_THEME_COLOR', color.value);
   toggleModal();
 };
 </script>

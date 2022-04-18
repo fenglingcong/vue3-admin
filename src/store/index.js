@@ -1,14 +1,12 @@
 import { createStore } from 'vuex';
+import app from './modules/app';
+import account from './modules/account';
+import count from './modules/count';
 
 export default createStore({
-  state: {
-  },
-  getters: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
   modules: {
+    app,
+    account,
+    count,
   },
 });

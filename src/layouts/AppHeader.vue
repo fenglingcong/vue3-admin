@@ -64,7 +64,7 @@ export default {
   &-info {
     float: right;
 
-    /deep/ &__lang {
+    :deep(&__lang) {
       display: inline-block;
       height: 100%;
       font-size: 24px;
