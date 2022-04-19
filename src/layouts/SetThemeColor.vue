@@ -38,15 +38,14 @@ import { ConfigProvider, message } from 'ant-design-vue';
 import { SettingOutlined } from '@ant-design/icons-vue';
 
 const { t } = useI18n();
+const store = useStore();
 const visible = ref(false);
-const color = ref('#1890ff');
+const color = ref(store.getters.themeColor);
 const toggleModal = () => {
   visible.value = !visible.value;
 };
-
-const store = useStore();
+let init = true;
 const handleOk = (reset = false) => {
-  console.log(reset);
   if (reset) {
     color.value = '#1890ff';
   }
@@ -60,8 +59,10 @@ const handleOk = (reset = false) => {
     }),
   });
   store.commit('SET_THEME_COLOR', color.value);
-  toggleModal();
+  if (!init) toggleModal();
 };
+handleOk();
+init = false;
 </script>
 
 <style lang='less' scoped>
