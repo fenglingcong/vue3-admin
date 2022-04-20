@@ -66,7 +66,7 @@
 <script>
 import { computed } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
-import { asyncRoutes } from '@/config/routes/index';
+import { asyncRoutes } from '@/router/routes/index';
 import { SmileFilled } from '@ant-design/icons-vue';
 
 export default {

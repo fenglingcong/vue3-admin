@@ -54,6 +54,7 @@ export default {
   &-main {
     min-height: 100vh;
     transition: all 0.2s;
+    overflow: hidden;
   }
 
   &-content {

@@ -19,6 +19,15 @@ export const asyncRoutes = [
         component: () => import(/* webpackChunkName: "home" */ '@/views/SHome'),
       },
       {
+        path: '/dashboard',
+        name: 'dashboard',
+        meta: {
+          title: 'dashboard',
+          icon: DesktopOutlined,
+        },
+        component: () => import(/* webpackChunkName: "dashboard" */ '@/views/dashboard/IndexPage'),
+      },
+      {
         path: '/list',
         name: 'list',
         meta: {

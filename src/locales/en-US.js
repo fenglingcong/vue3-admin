@@ -8,6 +8,7 @@ export default {
     home: 'Home',
     listPage: 'List page',
     tableList: 'Search List',
+    dashboard: 'Dashboard',
   },
   common: {
     pleaseInput: 'please input',

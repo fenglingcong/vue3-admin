@@ -8,6 +8,7 @@ export default {
     home: '首页',
     listPage: '列表页',
     tableList: '查询列表',
+    dashboard: '概况',
   },
   common: {
     pleaseInput: '请输入',
