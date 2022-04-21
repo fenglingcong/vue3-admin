@@ -85,9 +85,10 @@ export default {
       ];
       this.chart.changeData(data);
     },
-    beforeMount() {
-      this.chart = null;
-    },
+  },
+  beforeMount() {
+    if (this.chart) this.chart.destroy();
+    this.chart = null;
   },
 };
 </script>

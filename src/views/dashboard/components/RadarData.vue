@@ -109,6 +109,7 @@ export default {
     },
   },
   beforeMount() {
+    if (this.chart) this.chart.destroy();
     this.chart = null;
   },
 };

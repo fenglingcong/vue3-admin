@@ -111,6 +111,7 @@ export default {
 
       chart.render();
       this.chart = chart;
+      this.view1 = view1;
       this.view2 = view2;
     },
     update() {
@@ -124,12 +125,14 @@ export default {
       ];
       const { dv, dv2 } = this.transformData(data);
       this.chart.data(dv.rows);
+      this.view1.data(dv.rows);
       this.view2.data(dv2.rows);
       this.chart.render();
     },
-    beforeMount() {
-      this.chart = null;
-    },
+  },
+  beforeMount() {
+    if (this.chart) this.chart.destroy();
+    this.chart = null;
   },
 };
 </script>

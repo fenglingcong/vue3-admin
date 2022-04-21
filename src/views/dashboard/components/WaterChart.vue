@@ -62,5 +62,9 @@ export default {
       }, 500);
     },
   },
+  beforeMount() {
+    if (this.liquidPlot) this.liquidPlot.destroy();
+    this.liquidPlot = null;
+  },
 };
 </script>

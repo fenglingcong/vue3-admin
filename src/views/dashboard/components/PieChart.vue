@@ -131,9 +131,10 @@ export default {
       this.chart.data(this.transformData(data));
       this.chart.render();
     },
-    beforeMount() {
-      this.chart = null;
-    },
+  },
+  beforeMount() {
+    if (this.chart) this.chart.destroy();
+    this.chart = null;
   },
 };
 </script>
