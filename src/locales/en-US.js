@@ -20,6 +20,7 @@ export default {
     search: 'Search',
     reset: 'Reset ',
     set: 'Set',
+    update: 'Update',
   },
   user: {
     name: 'name',

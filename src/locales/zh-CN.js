@@ -20,6 +20,7 @@ export default {
     search: '查询',
     reset: '重置 ',
     set: '设置',
+    update: '更新',
   },
   user: {
     name: '姓名',

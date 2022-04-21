@@ -19,3 +19,20 @@ Mock.mock('/api/test', (options) => {
     }),
   };
 });
+
+Mock.mock('/api/radar/list', () => {
+  const obj = {
+    code: 1,
+    data: Mock.mock({
+      'list|7-11': [
+        {
+          item: '@name',
+          'a|30-90': 30,
+          'b|40-90': 40,
+          'd|50-90': 50,
+        },
+      ],
+    }),
+  };
+  return obj;
+});
