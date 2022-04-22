@@ -9,6 +9,7 @@ export default {
     listPage: '列表页',
     tableList: '查询列表',
     dashboard: '概况',
+    account: '个人页',
   },
   common: {
     pleaseInput: '请输入',

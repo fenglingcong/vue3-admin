@@ -1,5 +1,10 @@
 import BasicLayout from '@/layouts/BasicLayout.vue';
-import { DesktopOutlined } from '@ant-design/icons-vue';
+import {
+  DesktopOutlined,
+  DashboardOutlined,
+  UnorderedListOutlined,
+  UserOutlined,
+} from '@ant-design/icons-vue';
 import RouteView from '@/layouts/RouteView';
 
 export const asyncRoutes = [
@@ -23,7 +28,7 @@ export const asyncRoutes = [
         name: 'dashboard',
         meta: {
           title: 'dashboard',
-          icon: DesktopOutlined,
+          icon: DashboardOutlined,
         },
         component: () => import(/* webpackChunkName: "dashboard" */ '@/views/dashboard/IndexPage'),
       },
@@ -32,7 +37,7 @@ export const asyncRoutes = [
         name: 'list',
         meta: {
           title: 'listPage',
-          icon: DesktopOutlined,
+          icon: UnorderedListOutlined,
         },
         component: RouteView,
         children: [
@@ -45,6 +50,15 @@ export const asyncRoutes = [
             component: () => import(/* webpackChunkName: "list" */ '@/views/list/TableList'),
           },
         ],
+      },
+      {
+        path: '/account',
+        name: 'account',
+        meta: {
+          title: 'account',
+          icon: UserOutlined,
+        },
+        component: () => import(/* webpackChunkName: "account" */ '@/views/account/SettingPage'),
       },
     ],
   },

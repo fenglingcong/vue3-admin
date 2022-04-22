@@ -9,6 +9,7 @@ export default {
     listPage: 'List page',
     tableList: 'Search List',
     dashboard: 'Dashboard',
+    account: 'Personal Page',
   },
   common: {
     pleaseInput: 'please input',

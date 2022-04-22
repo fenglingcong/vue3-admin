@@ -53,6 +53,7 @@ export default {
     padding: 0 16px;
     transition: all 0.2s;
     background-color: #fff;
+    box-shadow: 0 1px 6px 1px rgba(#000, 0.1);
   }
 
   &-fold {

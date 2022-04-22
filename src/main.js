@@ -7,7 +7,7 @@ import store from './store';
 import 'ant-design-vue/dist/antd.variable.min.css';
 import '@/style/app.less';
 
-import './mock/test';
+// import './mock/test';
 import '@/permission';
 import i18n from './locales';
 
