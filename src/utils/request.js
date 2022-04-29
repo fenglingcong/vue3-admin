@@ -30,6 +30,7 @@ request.interceptors.request.use(
 // 拦截响应
 request.interceptors.response.use(
   (res) => {
+    console.log(res);
     if (res.data && res.data.code) {
       if (res.data.code === 1) {
         return res.data.data;

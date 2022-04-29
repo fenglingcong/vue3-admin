@@ -52,15 +52,15 @@ module.exports = defineConfig({
         port: 0, // 指定port 只在port相同时 会热更新
       }, */
     },
-    /* proxy: {
+    proxy: {
       '/api': {
-        target: 'http://dev.com', // dev
+        target: 'http://127.0.0.1:4523', // dev
         changeOrigin: true,
         pathRewrite: {
           '^/api': '',
         },
       },
-    }, */
+    },
     // 详细配置参考 https://webpack.docschina.org/configuration/dev-server/#devserversetupmiddlewares
     // mock数据
     setupMiddlewares: (middlewares, devServer) => {
