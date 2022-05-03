@@ -6,41 +6,44 @@
     class="header-box">
     <div class="header-fold">
       <component
-        :is="collapsed ? 'MenuUnfoldOutlined' : 'MenuFoldOutlined'"
+        :is="collapsed ? MenuUnfoldOutlined : MenuFoldOutlined"
         @click="$emit('fold')"
       />
     </div>
+    <!-- {{ userInfo.avatar }} -->
     <div class="header-info">
+      <a-space v-if="userInfo">
+        <a-avatar :size="32" :src="userInfo.avatar">
+          <template #icon><user-outlined /></template>
+        </a-avatar>
+        {{ userInfo.userName }}
+      </a-space>
       <switch-lang
-        class="header-info__lang"
+        class="header-info__lang ml10"
       />
     </div>
   </a-layout-header>
 </template>
 
-<script>
+<script setup>
+import { computed } from 'vue';
+import { useStore } from 'vuex';
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
+  UserOutlined,
 } from '@ant-design/icons-vue';
 import SwitchLang from './SwitchLang';
 
-export default {
-  components: {
-    MenuFoldOutlined,
-    MenuUnfoldOutlined,
-    SwitchLang,
+defineProps({
+  collapsed: {
+    type: Boolean,
+    required: true,
   },
-  props: {
-    collapsed: {
-      type: Boolean,
-      required: true,
-    },
-  },
-  setup() {
-    return {};
-  },
-};
+});
+
+const store = useStore();
+const userInfo = computed(() => store.getters.userInfo);
 </script>
 
 <style lang='less' scoped>
@@ -64,6 +67,8 @@ export default {
 
   &-info {
     float: right;
+    display: flex;
+    align-items: center;
 
     :deep(&__lang) {
       display: inline-block;
