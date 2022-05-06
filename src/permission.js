@@ -7,22 +7,27 @@ import store from './store';
 
 // NProgress.configure({ showSpinner: false });
 
+const whiteList = ['login'];
+
 router.beforeEach((to, from, next) => {
   NProgress.start();
   const token = ls.get('token');
   if (token) {
     if (to.name === 'login') {
-      next({ path: '/' });
+      next({ name: 'index' });
       NProgress.done();
     } else {
       store.dispatch('getUserInfo');
+      next({ ...to });
     }
+  } else if (whiteList.includes(to.name)) {
+    next();
   } else {
     next({
       name: 'login',
     });
+    NProgress.done();
   }
-  next();
 });
 
 router.afterEach((to) => {
