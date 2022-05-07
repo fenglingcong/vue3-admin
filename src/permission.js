@@ -14,11 +14,11 @@ router.beforeEach((to, from, next) => {
   const token = ls.get('token');
   if (token) {
     if (to.name === 'login') {
-      next({ name: 'index' });
       NProgress.done();
+      next({ name: 'dashboard' });
     } else {
       store.dispatch('getUserInfo');
-      next({ ...to });
+      next();
     }
   } else if (whiteList.includes(to.name)) {
     next();

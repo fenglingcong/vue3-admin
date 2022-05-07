@@ -9,7 +9,10 @@ export default {
   methods: {
     ...mapActions(['login']),
     submit(data) {
-      this.login(data);
+      this.login(data)
+        .then(() => {
+          this.$router.push({ name: 'index' });
+        });
     },
   },
 };
