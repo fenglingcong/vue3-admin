@@ -10,7 +10,6 @@
         @click="$emit('fold')"
       />
     </div>
-    <!-- {{ userInfo.avatar }} -->
     <div class="header-info">
       <a-space v-if="userInfo">
         <a-avatar :size="32" :src="userInfo.avatar">

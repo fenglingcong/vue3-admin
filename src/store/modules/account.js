@@ -13,7 +13,7 @@ export default {
       return state.token;
     },
     userInfo(state) {
-      return state.userInfo;
+      return state.userInfo || {};
     },
   },
   mutations: {

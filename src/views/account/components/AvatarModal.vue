@@ -1,14 +1,12 @@
 <template>
-  <a-modal
-    :width="660"
-    v-model:visible="visible"
-    @ok="saveAvatar">
+  <a-modal :width="660" v-model:visible="visible" @ok="saveAvatar">
     <template #title>
-      保存头像 <a href="https://github.com/xyxiao001/vue-cropper" target="_blank">（vue-cropper文档）</a>
+      保存头像
+      <a href="https://github.com/xyxiao001/vue-cropper" target="_blank">（vue-cropper文档）</a>
     </template>
     <a-row align="middle" justify="space-between">
       <a-col :span="12">
-        <div style="height: 300px;">
+        <div style="height: 300px">
           <vue-cropper
             ref="cropper"
             :img="options.img"
@@ -27,7 +25,7 @@
             width: previews.w + 'px',
             height: previews.h + 'px',
             overflow: 'hidden',
-            borderRadius: '50%'
+            borderRadius: '50%',
           }"
         >
           <div :style="previews.div">
@@ -99,10 +97,10 @@ const rotateRight = () => {
   cropper.value.rotateRight();
 };
 
-const emits = defineEmits(['ok']);
+const emits = defineEmits(['save']);
 const saveAvatar = () => {
   cropper.value.getCropData((data) => {
-    emits('ok', data, () => {
+    emits('save', data, () => {
       hide();
     });
   });
@@ -113,3 +111,84 @@ const show = () => {
 };
 defineExpose({ show });
 </script>
+
+<!--
+<script>
+import 'vue-cropper/dist/index.css';
+import { VueCropper } from 'vue-cropper';
+import { reactive, ref } from 'vue';
+import {
+  PlusOutlined,
+  MinusOutlined,
+  UndoOutlined,
+  RedoOutlined,
+} from '@ant-design/icons-vue';
+
+export default {
+  components: {
+    VueCropper,
+    PlusOutlined,
+    MinusOutlined,
+    UndoOutlined,
+    RedoOutlined,
+  },
+  setup(props, { emit, expose }) {
+    const visible = ref(false);
+    const cropper = ref(null);
+    const options = reactive({
+      img: 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fwww.ypiq.cn%2Fwp-content%2Fuploads%2F2021%2F09%2Fart0024520467.jpg&refer=http%3A%2F%2Fwww.ypiq.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1653201336&t=7263610a139051d67ff924452664b15f',
+      size: 1,
+      outputType: '',
+      autoCrop: true,
+      fixed: true,
+      autoCropWidth: 160,
+      autoCropHeight: 160,
+    });
+
+    const hide = () => {
+      visible.value = false;
+    };
+
+    const previews = ref({});
+    const realTime = (data) => {
+      previews.value = data;
+    };
+
+    const changeScale = (num = 1) => {
+      cropper.value.changeScale(num);
+    };
+    const rotateLeft = () => {
+      cropper.value.rotateLeft();
+    };
+    const rotateRight = () => {
+      cropper.value.rotateRight();
+    };
+
+    const saveAvatar = () => {
+      cropper.value.getCropData((data) => {
+        emit('save', data, () => {
+          hide();
+        });
+      });
+    };
+
+    const show = () => {
+      visible.value = true;
+    };
+    expose({ show });
+
+    return {
+      visible,
+      options,
+      cropper,
+      realTime,
+      previews,
+      changeScale,
+      rotateLeft,
+      rotateRight,
+      saveAvatar,
+    };
+  },
+};
+</script>
+-->

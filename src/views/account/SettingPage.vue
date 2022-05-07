@@ -2,25 +2,28 @@
   <a-avatar :size="120" :src="userInfo.avatar" @click="showModal">
     <template #icon><user-outlined /></template>
   </a-avatar>
-  {{ userInfo.userName }}
+  <a-input
+    :maxLength="10"
+    v-model:value.trim="userInfo.userName"
+  />
 
   <a-button type="primary" @click="updateInfo">更新</a-button>
 
   <avatar-modal
-    @ok="save"
+    @save="save"
     ref="modalRef"
   />
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, reactive } from 'vue';
 import { useStore } from 'vuex';
 import { UserOutlined } from '@ant-design/icons-vue';
 import AvatarModal from './components/AvatarModal';
 
 const store = useStore();
 const modalRef = ref(null);
-const userInfo = (store.getters.userInfo || {});
+const userInfo = reactive({ ...store.getters.userInfo });
 
 const showModal = () => {
   modalRef.value.show();
@@ -28,14 +31,56 @@ const showModal = () => {
 
 const save = (data, cb) => {
   userInfo.avatar = data;
-  console.log(store);
   cb();
 };
 
 const updateInfo = () => {
-  store.commit('SET_USER_INFO', userInfo);
+  if (!userInfo.userName) return;
+  store.commit('SET_USER_INFO', { ...userInfo });
 };
 </script>
 
-<style lang='less' scoped>
-</style>
+<!--
+<script>
+import {
+  ref,
+  reactive,
+} from 'vue';
+import { useStore } from 'vuex';
+import { UserOutlined } from '@ant-design/icons-vue';
+import AvatarModal from './components/AvatarModal';
+
+export default {
+  components: {
+    UserOutlined,
+    AvatarModal,
+  },
+  setup() {
+    const store = useStore();
+    const modalRef = ref(null);
+    const userInfo = reactive({ ...store.getters.userInfo });
+
+    const showModal = () => {
+      modalRef.value.show();
+    };
+
+    const save = (data, cb) => {
+      userInfo.avatar = data;
+      cb();
+    };
+
+    const updateInfo = () => {
+      store.commit('SET_USER_INFO', userInfo);
+    };
+
+    return {
+      userInfo,
+      modalRef,
+      showModal,
+      save,
+      updateInfo,
+    };
+  },
+};
+</script>
+ -->
