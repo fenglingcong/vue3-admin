@@ -11,12 +11,27 @@
       />
     </div>
     <div class="header-info">
-      <a-space v-if="userInfo">
-        <a-avatar :size="32" :src="userInfo.avatar">
-          <template #icon><user-outlined /></template>
-        </a-avatar>
-        {{ userInfo.userName }}
-      </a-space>
+      <a-dropdown>
+        <a class="ant-dropdown-link" @click.prevent>
+          <a-space>
+            <a-avatar :size="32" :src="userInfo.avatar">
+              <template #icon><user-outlined /></template>
+            </a-avatar>
+            <span>{{ userInfo.userName }}</span>
+          </a-space>
+        </a>
+        <template #overlay>
+          <a-menu>
+            <a-menu-item @click="toSettingPage">
+              <a href="javascript:;">个人设置</a>
+            </a-menu-item>
+            <a-menu-divider />
+            <a-menu-item @click="handleLogout">
+              <a href="javascript:;">退出登录</a>
+            </a-menu-item>
+          </a-menu>
+        </template>
+      </a-dropdown>
       <switch-lang
         class="header-info__lang ml10"
       />
@@ -26,6 +41,7 @@
 
 <script setup>
 import { computed } from 'vue';
+import { useRouter } from 'vue-router';
 import { useStore } from 'vuex';
 import {
   MenuFoldOutlined,
@@ -42,7 +58,18 @@ defineProps({
 });
 
 const store = useStore();
+const router = useRouter();
 const userInfo = computed(() => store.getters.userInfo);
+
+const toSettingPage = () => {
+  router.push({ name: 'account' });
+};
+const handleLogout = () => {
+  store.dispatch('logout')
+    .then(() => {
+      router.push({ name: 'login' });
+    });
+};
 </script>
 
 <style lang='less' scoped>

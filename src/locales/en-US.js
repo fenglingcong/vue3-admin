@@ -6,9 +6,16 @@ export default {
   menu: {
     head: 'System',
     home: 'Home',
-    listPage: 'List page',
-    tableList: 'Search List',
     dashboard: 'Dashboard',
+    formPage: 'Form Page',
+    formBasic: 'Basic form',
+    formStep: 'Form Step',
+    formAdvanced: 'Form Advanced',
+    listPage: 'List Page',
+    tableList: 'Search List',
+    detailPage: 'Detail Page',
+    detailBasic: 'Detail Basic',
+    detailAdvanced: 'Detail Advanced',
     account: 'Personal Page',
   },
   common: {

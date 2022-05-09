@@ -1,8 +1,9 @@
 import BasicLayout from '@/layouts/BasicLayout.vue';
 import {
-  DesktopOutlined,
+  FormOutlined,
   DashboardOutlined,
   UnorderedListOutlined,
+  ProfileOutlined,
   UserOutlined,
 } from '@ant-design/icons-vue';
 import RouteView from '@/layouts/RouteView';
@@ -15,15 +16,6 @@ export const asyncRoutes = [
     component: BasicLayout,
     children: [
       {
-        path: '/home',
-        name: 'home',
-        meta: {
-          title: 'home',
-          icon: DesktopOutlined,
-        },
-        component: () => import(/* webpackChunkName: "home" */ '@/views/SHome'),
-      },
-      {
         path: '/dashboard',
         name: 'dashboard',
         meta: {
@@ -31,6 +23,41 @@ export const asyncRoutes = [
           icon: DashboardOutlined,
         },
         component: () => import(/* webpackChunkName: "dashboard" */ '@/views/dashboard/IndexPage'),
+      },
+      {
+        path: '/form',
+        name: 'form',
+        meta: {
+          title: 'formPage',
+          icon: FormOutlined,
+        },
+        component: RouteView,
+        children: [
+          {
+            path: '/form/basic',
+            name: 'formBasic',
+            meta: {
+              title: 'formBasic',
+            },
+            component: () => import(/* webpackChunkName: "formBasic" */ '@/views/form/FormBasic'),
+          },
+          {
+            path: '/form/step',
+            name: 'formStep',
+            meta: {
+              title: 'formStep',
+            },
+            component: () => import(/* webpackChunkName: "formStep" */ '@/views/form/FormStep'),
+          },
+          {
+            path: '/form/advanced',
+            name: 'formAdvanced',
+            meta: {
+              title: 'formAdvanced',
+            },
+            component: () => import(/* webpackChunkName: "formAdvanced" */ '@/views/form/FormAdvanced'),
+          },
+        ],
       },
       {
         path: '/list',
@@ -47,7 +74,34 @@ export const asyncRoutes = [
             meta: {
               title: 'tableList',
             },
-            component: () => import(/* webpackChunkName: "list" */ '@/views/list/TableList'),
+            component: () => import(/* webpackChunkName: "listTable" */ '@/views/list/TableList'),
+          },
+        ],
+      },
+      {
+        path: '/detail',
+        name: 'detail',
+        meta: {
+          title: 'detailPage',
+          icon: ProfileOutlined,
+        },
+        component: RouteView,
+        children: [
+          {
+            path: '/detail/basic',
+            name: 'detailBasic',
+            meta: {
+              title: 'detailBasic',
+            },
+            component: () => import(/* webpackChunkName: "detailBasic" */ '@/views/detail/DetailBasic'),
+          },
+          {
+            path: '/detail/advanced',
+            name: 'detailAdvanced',
+            meta: {
+              title: 'detailAdvanced',
+            },
+            component: () => import(/* webpackChunkName: "detailAdvanced" */ '@/views/detail/DetailAdvanced'),
           },
         ],
       },

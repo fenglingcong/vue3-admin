@@ -6,9 +6,16 @@ export default {
   menu: {
     head: '管理系统',
     home: '首页',
+    dashboard: '概况',
+    formPage: '表单页',
+    formBasic: '基础表单',
+    formStep: '分步表单',
+    formAdvanced: '高级表单',
     listPage: '列表页',
     tableList: '查询列表',
-    dashboard: '概况',
+    detailPage: '详情页',
+    detailBasic: '基础详情',
+    detailAdvanced: '高级详情',
     account: '个人页',
   },
   common: {

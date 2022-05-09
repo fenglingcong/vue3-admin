@@ -33,6 +33,7 @@ export default {
             const { token } = res;
             if (token) {
               commit('SET_TOKEN', token);
+              reslove(res);
             } else {
               reject(new Error('获取token失败'));
             }
@@ -41,6 +42,9 @@ export default {
             reject(err);
           });
       });
+    },
+    logout({ commit }) {
+      commit('SET_TOKEN', '');
     },
     getUserInfo({ commit }) {
       return new Promise((reslove, reject) => {
