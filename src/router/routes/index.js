@@ -12,7 +12,7 @@ export const asyncRoutes = [
   {
     path: '/',
     name: 'index',
-    redirect: '/home',
+    redirect: '/dashboard',
     component: BasicLayout,
     children: [
       {
