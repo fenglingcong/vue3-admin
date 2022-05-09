@@ -46,6 +46,3 @@ const itemLayout = {
   xxl: 8,
 };
 </script>
-
-<style lang='less' scoped>
-</style>

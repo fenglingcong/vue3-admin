@@ -43,55 +43,38 @@
   </a-card>
 </template>
 
-<script>
-import {
-  defineComponent,
-  computed,
-} from 'vue';
+<script setup>
+import { computed } from 'vue';
 import { useI18n } from 'vue-i18n/index';
 import getTableList from './composables/getTableList';
 import filterList from './composables/filterList';
 
-export default defineComponent({
-  setup() {
-    const { t } = useI18n();
-    const columns = computed(() => [
-      {
-        title: t('user.name'),
-        dataIndex: 'name',
-      },
-      {
-        title: t('user.age'),
-        dataIndex: 'age',
-      },
-      {
-        title: t('user.address'),
-        dataIndex: 'address',
-      },
-    ]);
-
-    const {
-      loading,
-      list,
-      total,
-      handleList,
-    } = getTableList();
-
-    const {
-      queryParams,
-      searchQuery,
-      resetQuery,
-    } = filterList(list, handleList);
-
-    return {
-      columns,
-      loading,
-      list,
-      total,
-      queryParams,
-      searchQuery,
-      resetQuery,
-    };
+const { t } = useI18n();
+const columns = computed(() => [
+  {
+    title: t('user.name'),
+    dataIndex: 'name',
   },
-});
+  {
+    title: t('user.age'),
+    dataIndex: 'age',
+  },
+  {
+    title: t('user.address'),
+    dataIndex: 'address',
+  },
+]);
+
+const {
+  loading,
+  list,
+  total,
+  handleList,
+} = getTableList();
+
+const {
+  queryParams,
+  searchQuery,
+  resetQuery,
+} = filterList(list, handleList);
 </script>

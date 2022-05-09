@@ -21,31 +21,16 @@
   />
 </template>
 
-<script>
+<script setup>
 import { ref } from 'vue';
 import AppSider from './AppSider.vue';
 import AppHeader from './AppHeader.vue';
 import AppFooter from './AppFooter.vue';
 import SetThemeColor from './SetThemeColor.vue';
 
-export default {
-  components: {
-    AppSider,
-    AppHeader,
-    AppFooter,
-    SetThemeColor,
-  },
-  setup() {
-    const collapsed = ref(false);
-    const handleFold = () => {
-      collapsed.value = !collapsed.value;
-    };
-
-    return {
-      collapsed,
-      handleFold,
-    };
-  },
+const collapsed = ref(false);
+const handleFold = () => {
+  collapsed.value = !collapsed.value;
 };
 </script>
 
