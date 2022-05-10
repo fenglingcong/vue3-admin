@@ -18,13 +18,21 @@ router.beforeEach((to, from, next) => {
       next({ name: 'dashboard' });
     } else {
       store.dispatch('getUserInfo');
-      next();
+      const redirect = decodeURIComponent(to.query.redirect || to.path);
+      if (to.path === redirect) {
+        next();
+      } else {
+        next({ path: redirect });
+      }
     }
   } else if (whiteList.includes(to.name)) {
     next();
   } else {
     next({
       name: 'accountLogin',
+      query: {
+        redirect: to.fullPath,
+      },
     });
     NProgress.done();
   }

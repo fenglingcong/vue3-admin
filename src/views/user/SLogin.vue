@@ -55,7 +55,7 @@ import {
   computed,
 } from 'vue';
 import { useStore } from 'vuex';
-import { useRouter } from 'vue-router';
+import { useRouter, useRoute } from 'vue-router';
 import { UserOutlined, LockOutlined } from '@ant-design/icons-vue';
 import { useI18n } from 'vue-i18n/index';
 
@@ -74,6 +74,7 @@ const loading = ref(false);
 
 const store = useStore();
 const router = useRouter();
+const route = useRoute();
 const remember = ref(store.getters.remember);
 if (remember.value) {
   formState.username = 'admin';
@@ -90,7 +91,8 @@ const onFinish = (values) => {
   store.dispatch('login', values)
     .then(() => {
       loading.value = false;
-      router.push({ name: 'index' });
+      const path = route.query.redirect || '/';
+      router.push({ path });
     });
 };
 

@@ -107,8 +107,8 @@ export const asyncRoutes = [
         ],
       },
       {
-        path: '/account',
-        name: 'account',
+        path: '/user',
+        name: 'user',
         meta: {
           title: 'account',
           icon: UserOutlined,
