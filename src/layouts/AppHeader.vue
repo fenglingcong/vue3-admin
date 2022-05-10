@@ -67,7 +67,7 @@ const toSettingPage = () => {
 const handleLogout = () => {
   store.dispatch('logout')
     .then(() => {
-      router.push({ name: 'login' });
+      router.push({ name: 'accountLogin' });
     });
 };
 </script>

@@ -7,13 +7,13 @@ import store from './store';
 
 // NProgress.configure({ showSpinner: false });
 
-const whiteList = ['login'];
+const whiteList = ['accountLogin', 'exception'];
 
 router.beforeEach((to, from, next) => {
   NProgress.start();
   const token = ls.get('token');
   if (token) {
-    if (to.name === 'login') {
+    if (to.name === 'accountLogin') {
       NProgress.done();
       next({ name: 'dashboard' });
     } else {
@@ -24,7 +24,7 @@ router.beforeEach((to, from, next) => {
     next();
   } else {
     next({
-      name: 'login',
+      name: 'accountLogin',
     });
     NProgress.done();
   }

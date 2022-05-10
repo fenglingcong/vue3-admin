@@ -1,4 +1,5 @@
 import BasicLayout from '@/layouts/BasicLayout.vue';
+import AccountLayout from '@/layouts/AccountLayout.vue';
 import {
   FormOutlined,
   DashboardOutlined,
@@ -126,13 +127,20 @@ export const asyncRoutes = [
 // 基础路由
 export const basicRoutes = [
   {
-    path: '/login',
-    name: 'login',
-    component: () => import(/* webpackChunkName: "login" */ '@/views/user/SLogin'),
+    path: '/account',
+    name: 'account',
+    component: AccountLayout,
+    children: [
+      {
+        path: '/account/login',
+        name: 'accountLogin',
+        component: () => import(/* webpackChunkName: "login" */ '@/views/user/SLogin'),
+      },
+    ],
   },
   {
     path: '/404',
     name: 'exception',
-    component: () => import(/* webpackChunkName: "login" */ '@/views/exception/404'),
+    component: () => import(/* webpackChunkName: "404" */ '@/views/exception/404'),
   },
 ];

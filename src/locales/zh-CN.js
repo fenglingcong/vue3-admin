@@ -29,10 +29,18 @@ export default {
     reset: '重置 ',
     set: '设置',
     update: '更新',
+    login: '登录',
   },
   user: {
     name: '姓名',
     age: '年龄',
     address: '住址',
+  },
+  account: {
+    pleaseInputAccount: '请输入账户名',
+    pleaseInputPassword: '请输入密码',
+    userName: '账户：admin',
+    password: '密码：123456',
+    remember: '记住账号',
   },
 };

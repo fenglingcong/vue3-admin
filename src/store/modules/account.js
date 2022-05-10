@@ -1,11 +1,13 @@
 import ls from '@/utils/storage';
 import { login, getUserInfo } from '@/api';
+import { message } from 'ant-design-vue';
 
 export default {
   state() {
     return {
       token: ls.get('token', ''),
       userInfo: null,
+      remember: ls.get('remember', false),
     };
   },
   getters: {
@@ -14,6 +16,9 @@ export default {
     },
     userInfo(state) {
       return state.userInfo || {};
+    },
+    remember(state) {
+      return state.remember;
     },
   },
   mutations: {
@@ -24,10 +29,18 @@ export default {
     SET_USER_INFO(state, info) {
       state.userInfo = info;
     },
+    SET_REMEMBER(state, flag) {
+      ls.set('remember', flag);
+      state.remember = flag;
+    },
   },
   actions: {
     login({ commit }, data) {
       return new Promise((reslove, reject) => {
+        if (data.username !== 'admin' || data.password !== '123456') {
+          message.error('用户名或密码错误');
+          return;
+        }
         login(data)
           .then((res) => {
             const { token } = res;

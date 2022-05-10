@@ -29,10 +29,18 @@ export default {
     reset: 'Reset ',
     set: 'Set',
     update: 'Update',
+    login: 'Login',
   },
   user: {
     name: 'name',
     age: 'age',
     address: 'address',
+  },
+  account: {
+    pleaseInputAccount: 'Please input your username!',
+    pleaseInputPassword: 'Please input your password!',
+    userName: 'Account：admin',
+    password: 'Password：123456',
+    remember: 'Remember  me',
   },
 };
