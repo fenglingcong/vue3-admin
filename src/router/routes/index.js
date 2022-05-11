@@ -32,6 +32,7 @@ export const asyncRoutes = [
           title: 'formPage',
           icon: FormOutlined,
         },
+        redirect: '/form/basic',
         component: RouteView,
         children: [
           {
@@ -40,13 +41,14 @@ export const asyncRoutes = [
             meta: {
               title: 'formBasic',
             },
+            redirect: '/form/basic/child',
             component: RouteView,
             children: [
               {
-                path: '/form/basic/c',
-                name: 'formBasicC',
+                path: '/form/basic/child',
+                name: 'formBasicChild',
                 meta: {
-                  title: 'formBasic',
+                  title: 'formBasicChild',
                 },
                 component: () => import(/* webpackChunkName: "formBasic" */ '@/views/form/FormBasic'),
               },
@@ -77,6 +79,7 @@ export const asyncRoutes = [
           title: 'listPage',
           icon: UnorderedListOutlined,
         },
+        redirect: '/list/table',
         component: RouteView,
         children: [
           {
@@ -96,6 +99,7 @@ export const asyncRoutes = [
           title: 'detailPage',
           icon: ProfileOutlined,
         },
+        redirect: '/detail/basic',
         component: RouteView,
         children: [
           {

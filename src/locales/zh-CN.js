@@ -9,6 +9,7 @@ export default {
     dashboard: '概况',
     formPage: '表单页',
     formBasic: '基础表单',
+    formBasicChild: '基础子表单',
     formStep: '分步表单',
     formAdvanced: '高级表单',
     listPage: '列表页',

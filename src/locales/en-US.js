@@ -9,6 +9,7 @@ export default {
     dashboard: 'Dashboard',
     formPage: 'Form Page',
     formBasic: 'Basic form',
+    formBasicChild: 'Basic child form',
     formStep: 'Form Step',
     formAdvanced: 'Form Advanced',
     listPage: 'List Page',

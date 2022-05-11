@@ -1,15 +1,32 @@
 <template>
   <a-layout-header
+    class="header-box"
     :style="{
       left: collapsed ? '80px' : '200px',
-    }"
-    class="header-box">
-    <div class="header-fold">
-      <component
-        :is="collapsed ? MenuUnfoldOutlined : MenuFoldOutlined"
-        @click="$emit('fold')"
-      />
+    }">
+    <div class="header-nav">
+      <!-- 展开折叠开关 -->
+      <div class="header-fold">
+        <component
+          :is="collapsed ? MenuUnfoldOutlined : MenuFoldOutlined"
+          @click="$emit('fold')"
+        />
+      </div>
+      <!-- 面包屑 -->
+      <a-breadcrumb class="header-breadcrumb ml10">
+        <a-breadcrumb-item
+          v-for="(item, index) in breadcrumbs"
+          :key="item.path">
+          <router-link
+            v-if="index !== breadcrumbs.length - 1"
+            :to="item.path">
+            {{ $t(`menu.${item.meta.title}`) }}
+          </router-link>
+          <span v-else>{{ $t(`menu.${item.meta.title}`) }}</span>
+        </a-breadcrumb-item>
+      </a-breadcrumb>
     </div>
+    <!-- 用户信息 退出 语言切换 -->
     <div class="header-info">
       <a-dropdown>
         <a class="ant-dropdown-link" @click.prevent>
@@ -41,7 +58,7 @@
 
 <script setup>
 import { computed } from 'vue';
-import { useRouter } from 'vue-router';
+import { useRouter, useRoute } from 'vue-router';
 import { useStore } from 'vuex';
 import {
   MenuFoldOutlined,
@@ -59,7 +76,9 @@ defineProps({
 
 const store = useStore();
 const router = useRouter();
+const route = useRoute();
 const userInfo = computed(() => store.getters.userInfo);
+const breadcrumbs = computed(() => route.matched.slice(1));
 
 const toSettingPage = () => {
   router.push({ name: 'account' });
@@ -79,6 +98,9 @@ const handleLogout = () => {
     top: 0;
     right: 0;
     z-index: 9;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     padding: 0 16px;
     transition: all 0.2s;
     background-color: #fff;
@@ -87,12 +109,16 @@ const handleLogout = () => {
 
   &-fold {
     display: inline-block;
+    vertical-align: top;
     font-size: 24px;
     cursor: pointer;
   }
 
+  &-breadcrumb {
+    display: inline-block;
+  }
+
   &-info {
-    float: right;
     display: flex;
     align-items: center;
 
