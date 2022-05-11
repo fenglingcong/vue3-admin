@@ -40,7 +40,17 @@ export const asyncRoutes = [
             meta: {
               title: 'formBasic',
             },
-            component: () => import(/* webpackChunkName: "formBasic" */ '@/views/form/FormBasic'),
+            component: RouteView,
+            children: [
+              {
+                path: '/form/basic/c',
+                name: 'formBasicC',
+                meta: {
+                  title: 'formBasic',
+                },
+                component: () => import(/* webpackChunkName: "formBasic" */ '@/views/form/FormBasic'),
+              },
+            ],
           },
           {
             path: '/form/step',

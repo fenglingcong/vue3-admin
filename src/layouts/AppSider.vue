@@ -23,6 +23,8 @@
       mode="inline"
       theme="dark"
       :selectedKeys="selectedKeys"
+      :open-keys="openKeys"
+      @openChange="onOpenChange"
       @click="handleClick">
       <template v-for="item in menus">
         <a-sub-menu
@@ -64,7 +66,11 @@
 </template>
 
 <script>
-import { computed } from 'vue';
+import {
+  reactive,
+  computed,
+  toRefs,
+} from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import { asyncRoutes } from '@/router/routes/index';
 import { SmileFilled } from '@ant-design/icons-vue';
@@ -80,10 +86,26 @@ export default {
     },
   },
   setup() {
-    const menus = asyncRoutes[0].children;
+    const state = reactive({
+      menus: asyncRoutes[0].children,
+      openKeys: [],
+    });
+    const rootSubmenuKeys = state.menus.map((menu) => menu.path);
     const router = useRouter();
     const route = useRoute();
     const selectedKeys = computed(() => [route.path]);
+    const matchPaths = (route.matched || []).map((v) => v.path);
+    state.openKeys = matchPaths.length > 1
+      ? matchPaths.slice(1, matchPaths.length - 1) : matchPaths;
+
+    const onOpenChange = (openKeys) => {
+      const latestOpenKey = openKeys.find((key) => !state.openKeys.includes(key));
+      if (rootSubmenuKeys.includes(latestOpenKey)) {
+        state.openKeys = latestOpenKey ? [latestOpenKey] : [];
+      } else {
+        state.openKeys = openKeys;
+      }
+    };
 
     const handleClick = ({ key }) => {
       if (route.path !== key) {
@@ -92,8 +114,9 @@ export default {
     };
 
     return {
-      menus,
+      ...toRefs(state),
       selectedKeys,
+      onOpenChange,
       handleClick,
     };
   },

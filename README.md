@@ -25,5 +25,8 @@ yarn test:unit
 yarn lint
 ```
 
+### Mock for Apifox
+See [Apifox](https://www.apifox.cn/).
+
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
