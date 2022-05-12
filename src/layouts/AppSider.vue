@@ -65,7 +65,54 @@
   </a-layout-sider>
 </template>
 
-<script>
+<script setup>
+import {
+  reactive,
+  computed,
+  toRefs,
+} from 'vue';
+import { useRouter, useRoute } from 'vue-router';
+import { asyncRoutes } from '@/router/routes/index';
+import { SmileFilled } from '@ant-design/icons-vue';
+
+defineProps({
+  collapsed: {
+    type: Boolean,
+    required: true,
+  },
+});
+
+const state = reactive({
+  menus: asyncRoutes[0].children,
+  openKeys: [],
+});
+const rootSubmenuKeys = state.menus.map((menu) => menu.path);
+const router = useRouter();
+const route = useRoute();
+const selectedKeys = computed(() => [route.path]);
+const matchPaths = (route.matched || []).map((v) => v.path);
+state.openKeys = matchPaths.length > 1
+  ? matchPaths.slice(1, matchPaths.length - 1) : matchPaths;
+
+const onOpenChange = (openKeys) => {
+  const latestOpenKey = openKeys.find((key) => !state.openKeys.includes(key));
+  if (rootSubmenuKeys.includes(latestOpenKey)) {
+    state.openKeys = latestOpenKey ? [latestOpenKey] : [];
+  } else {
+    state.openKeys = openKeys;
+  }
+};
+
+const handleClick = ({ key }) => {
+  if (route.path !== key) {
+    router.push(key);
+  }
+};
+
+const { menus, openKeys } = toRefs(state);
+</script>
+
+<!--<script>
 import {
   reactive,
   computed,
@@ -122,6 +169,7 @@ export default {
   },
 };
 </script>
+-->
 
 <style lang='less' scoped>
 .sider {

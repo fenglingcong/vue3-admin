@@ -1,7 +1,13 @@
 <template>
   <a-card>
     <a-skeleton :loading="loading">
-      <a-form layout="vertical" style="max-width: 600px;">
+      <a-form
+        style="margin: 0 auto; max-width: 600px;"
+        :labelCol="{
+          style: {
+            width: '120px',
+          }
+        }">
         <a-form-item label="头像">
           <a-avatar :size="120" :src="userInfo.avatar" @click="showModal">
             <template #icon><user-outlined /></template>
@@ -9,19 +15,20 @@
         </a-form-item>
         <a-form-item label="用户名">
           <a-input
-            :maxLength="10"
+            :maxlength="10"
             v-model:value.trim="userInfo.userName"
           />
         </a-form-item>
         <a-form-item label="个人简介">
           <a-textarea
-            :maxLength="200"
+            :maxlength="200"
             v-model:value.trim="userInfo.intro"
           />
         </a-form-item>
+        <a-form-item style="text-align: center">
+          <a-button type="primary" @click="updateInfo">更新信息</a-button>
+        </a-form-item>
       </a-form>
-
-      <a-button type="primary" @click="updateInfo">更新信息</a-button>
     </a-skeleton>
   </a-card>
 
