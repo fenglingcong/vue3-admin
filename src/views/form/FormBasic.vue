@@ -9,7 +9,7 @@
       @finish="handleFinish"
       @validate="handleValidate"
       @finishFailed="handleFinishFailed"
-      scrollToFirstError
+      :scrollToFirstError="{ block: 'end', }"
     >
       <a-form-item label="公司名称" name="companyName">
         <a-input
@@ -32,7 +32,7 @@
           :precision="0"
           :min="0"
           :max="999999"
-          v-model:value.trim="infoRef.number"
+          v-model:value="infoRef.number"
         />
       </a-form-item>
       <a-form-item label="法人" name="legalPerson">
@@ -87,7 +87,7 @@ import { ref, reactive } from 'vue';
 const formRef = ref();
 const layout = {
   labelCol: {
-    lg: { span: 10 },
+    lg: { span: 9 },
     sm: { span: 7 },
   },
   wrapperCol: {
@@ -97,15 +97,15 @@ const layout = {
 };
 const infoRef = reactive({});
 const rules = {
-  companyName: [{ required: true, message: '请输入公司名称' }],
+  companyName: [{ required: true, message: '请输入公司名称', trigger: 'blur' }],
   type: [{ required: true, message: '请选择公司类型', trigger: 'change' }],
-  number: [{ required: true, message: '请输入员工数量' }],
-  legalPerson: [{ required: true, message: '请输入法人' }],
-  idcard: [{ required: true, message: '请输入身份证号' }],
-  applyTime: [{ required: true, message: '请选择申请时间', trigger: 'change' }],
-  phone: [{ required: true, message: '请输入电话' }],
-  email: [{ required: true, message: '请输入邮箱' }],
-  address: [{ required: true, message: '请输入办公地址' }],
+  number: [{ required: true, message: '请输入员工数量', trigger: 'blur' }],
+  legalPerson: [{ required: true, message: '请输入法人', trigger: 'blur' }],
+  idcard: [{ required: true, message: '请输入身份证号', trigger: 'blur' }],
+  applyTime: [{ required: true, message: '请选择申请时间', trigger: ['blur', 'change'] }],
+  phone: [{ required: true, message: '请输入电话', trigger: 'blur' }],
+  email: [{ required: true, message: '请输入邮箱', trigger: 'blur' }],
+  address: [{ required: true, message: '请输入办公地址', trigger: 'blur' }],
 };
 
 const handleFinish = (values) => {
