@@ -67,18 +67,32 @@
           v-model:value.trim="infoRef.address"
         />
       </a-form-item>
-      <a-form-item :wrapperCol="{ span: 24 }" style="text-align: center;" v-bind="errorInfos">
-        <a-button type="primary" @click.prevent="onSubmit">注册公司</a-button>
-        <a-button class="ml10" @click="resetFields">reset</a-button>
-      </a-form-item>
     </a-form>
+  </a-card>
+  <a-card>
+    <form-field
+      ref="contactRef"
+    />
+  </a-card>
+  <a-card>
+    <form-field
+      labelName="网址"
+      ref="websiteRef"
+    />
+  </a-card>
+  <a-card>
+    <a-form-item :wrapperCol="{ span: 24 }" style="text-align: center;" v-bind="errorInfos">
+      <a-button type="primary" @click.prevent="onSubmit">注册公司</a-button>
+      <a-button class="ml10" @click="resetFields">重置</a-button>
+    </a-form-item>
   </a-card>
 </template>
 
 <script setup>
-import { reactive, computed } from 'vue';
+import { ref, reactive, computed } from 'vue';
 import { toArray } from 'lodash-es';
 import { Form } from 'ant-design-vue';
+import FormField from './FormField.vue';
 
 const useFormHandle = Form.useForm;
 const layout = {
@@ -120,13 +134,43 @@ const {
   mergeValidateInfo,
 } = useFormHandle(infoRef, rules);
 
+const contactRef = ref();
+const websiteRef = ref();
 const onSubmit = () => {
-  validate()
-    .then(() => {
-      console.log(infoRef);
+  const basicInfo = new Promise((resolve, reject) => {
+    validate()
+      .then((res) => {
+        console.log(res, infoRef);
+        resolve(infoRef);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+  const contactInfo = new Promise((resolve, reject) => {
+    contactRef.value.submit()
+      .then((res) => {
+        resolve(res);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+  const websiteInfo = new Promise((resolve, reject) => {
+    websiteRef.value.submit()
+      .then((res) => {
+        resolve(res);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+  Promise.all([basicInfo, contactInfo, websiteInfo])
+    .then((values) => {
+      console.log(values);
     })
     .catch((err) => {
-      console.log('error', err);
+      console.log(err);
     });
 };
 const errorInfos = computed(() => mergeValidateInfo(toArray(validateInfos)));
