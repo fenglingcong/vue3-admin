@@ -1,5 +1,5 @@
 <template>
-  <div>高级详情</div>
+  <a-card>高级详情</a-card>
 </template>
 
 <script setup>

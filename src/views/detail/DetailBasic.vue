@@ -1,5 +1,5 @@
 <template>
-  <div>基础详情</div>
+  <a-card>基础详情</a-card>
 </template>
 
 <script setup>
