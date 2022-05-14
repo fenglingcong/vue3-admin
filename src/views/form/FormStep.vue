@@ -23,10 +23,19 @@
       </a-space>
     </div>
   </a-card>
+  <a-card>
+    <a-button type="primary" @click="showModal">选择</a-button>
+  </a-card>
+
+  <select-modal
+    ref="modalRef"
+    @save="save"
+  />
 </template>
 
 <script setup>
 import { ref, reactive } from 'vue';
+import SelectModal from '@/components/SelectModal.vue';
 
 const current = ref(0);
 const steps = reactive([
@@ -53,6 +62,14 @@ const next = () => {
 
 const prev = () => {
   current.value -= 1;
+};
+
+const modalRef = ref(null);
+const showModal = () => {
+  modalRef.value.show();
+};
+const save = (cb) => {
+  cb();
 };
 </script>
 
