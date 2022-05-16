@@ -25,17 +25,42 @@
   </a-card>
   <a-card>
     <a-button type="primary" @click="showModal">选择</a-button>
+    <list-table
+      class="mt10"
+      :loading="loading"
+      :list="selectedList"
+    />
   </a-card>
 
   <select-modal
     ref="modalRef"
+    :getCheckboxProps="getCheckboxProps"
     @save="save"
   />
 </template>
 
 <script setup>
 import { ref, reactive } from 'vue';
-import SelectModal from '@/components/SelectModal.vue';
+import SelectModal from './components/SelectModal.vue';
+import ListTable from './components/ListTable.vue';
+
+const loading = ref(false);
+const selectedIdList = ref([]);
+const selectedList = ref([]);
+
+const modalRef = ref(null);
+const showModal = () => {
+  modalRef.value.show();
+};
+const getCheckboxProps = (record) => ({
+  disabled: selectedIdList.value.includes(record.id),
+});
+
+const save = (selectedRowKeys, selectedRows, cb) => {
+  selectedIdList.value = [...selectedRowKeys, ...selectedIdList.value];
+  selectedList.value = [...selectedRows, ...selectedList.value];
+  cb();
+};
 
 const current = ref(0);
 const steps = reactive([
@@ -62,14 +87,6 @@ const next = () => {
 
 const prev = () => {
   current.value -= 1;
-};
-
-const modalRef = ref(null);
-const showModal = () => {
-  modalRef.value.show();
-};
-const save = (cb) => {
-  cb();
 };
 </script>
 

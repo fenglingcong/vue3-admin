@@ -12,6 +12,10 @@ export function getList(data) {
   return request.post('/mock/927859/list', data);
 }
 
+export function getSelectList(data) {
+  return request.post('/mock/927859/select/list', data);
+}
+
 export function getRadarData(data) {
   return request.post('/mock/927859/radar', data);
 }
