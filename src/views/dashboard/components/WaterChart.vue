@@ -138,7 +138,7 @@ export default {
       }, 500);
     },
   },
-  beforeMount() {
+  beforeUnmount() {
     if (this.liquidPlot) this.liquidPlot.destroy();
     this.liquidPlot = null;
   },

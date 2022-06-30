@@ -132,7 +132,7 @@ export default {
       this.chart.render();
     },
   },
-  beforeMount() {
+  beforeUnmount() {
     if (this.chart) this.chart.destroy();
     this.chart = null;
   },

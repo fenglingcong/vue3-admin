@@ -108,7 +108,7 @@ export default {
       this.chart.changeData(this.transformData(this.data));
     },
   },
-  beforeMount() {
+  beforeUnmount() {
     if (this.chart) this.chart.destroy();
     this.chart = null;
   },
