@@ -33,7 +33,7 @@ const props = defineProps({
   },
   getCheckboxProps: {
     type: Function,
-    default: () => ({ props: {} }),
+    default: () => ({}),
   },
 });
 
