@@ -25,7 +25,7 @@
           :placeholder="$t('account.password')"
           v-model:value.trim="formState.password">
           <template #prefix>
-              <lock-outlined style="color: #bbb;" />
+            <lock-outlined style="color: #bbb;" />
           </template>
         </a-input-password>
       </a-form-item>

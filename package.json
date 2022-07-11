@@ -13,7 +13,7 @@
     "@antv/data-set": "^0.11.8",
     "@antv/g2": "^4.1.50",
     "@antv/g2plot": "^2.4.15",
-    "ant-design-vue": "3.1.1",
+    "ant-design-vue": "^3.2.10",
     "axios": "^0.26.1",
     "core-js": "^3.8.3",
     "dayjs": "^1.11.0",
