@@ -1,6 +1,6 @@
 import ls from '@/utils/storage';
 import { login, getUserInfo } from '@/api';
-import { message } from 'ant-design-vue';
+// import { message } from 'ant-design-vue';
 
 export default {
   state() {
@@ -37,10 +37,10 @@ export default {
   actions: {
     login({ commit }, data) {
       return new Promise((reslove, reject) => {
-        if (data.username !== 'admin' || data.password !== '123456') {
-          message.error('用户名或密码错误');
-          return;
-        }
+        // if (data.username !== 'admin' || data.password !== '123456') {
+        //   message.error('用户名或密码错误');
+        //   return;
+        // }
         login(data)
           .then((res) => {
             const { token } = res;

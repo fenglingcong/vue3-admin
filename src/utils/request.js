@@ -5,7 +5,7 @@ import { stringify } from 'qs';
 
 const formContentType = 'application/x-www-form-urlencoded;charset=utf-8';
 const methods = ['post', 'put', 'delete'];
-const InvalidCode = 1000000;
+const InvalidCode = 401;
 
 // 创建axios实例
 const request = axios.create({
@@ -18,7 +18,7 @@ const request = axios.create({
 // 拦截请求
 request.interceptors.request.use(
   (config) => {
-    const token = 'token';
+    const { token } = store.getters;
     if (token) {
       config.headers.Token = token;
     }
@@ -48,14 +48,11 @@ request.interceptors.response.use(
         // window.location.reload();
       }
       // eslint-disable-next-line prefer-promise-reject-errors
-      return Promise.reject({ msg: res.data.msg || '登录失效' });
+      return Promise.reject({ msg: res.data.message || '登录失效' });
     }
     return Promise.reject(new Error({ msg: 'Network error' }));
   },
-  (error) => {
-    console.log(error);
-    return Promise.reject(error);
-  },
+  (error) => Promise.reject(error),
 );
 
 export default request;

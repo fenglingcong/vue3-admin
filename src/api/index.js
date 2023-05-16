@@ -1,7 +1,11 @@
 import request from '@/utils/request';
 
-export function login(data) {
+/* export function login(data) {
   return request.post('/mock/927859/login', data);
+} */
+
+export function login(data) {
+  return request.post('/login', data);
 }
 
 export function getUserInfo(data) {

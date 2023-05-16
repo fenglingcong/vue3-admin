@@ -58,6 +58,7 @@ import { useStore } from 'vuex';
 import { useRouter, useRoute } from 'vue-router';
 import { UserOutlined, LockOutlined } from '@ant-design/icons-vue';
 import { useI18n } from 'vue-i18n/index';
+import { message } from 'ant-design-vue';
 
 const formState = reactive({
   username: '',
@@ -93,6 +94,10 @@ const onFinish = (values) => {
       loading.value = false;
       const path = route.query.redirect || '/';
       router.push({ path });
+    })
+    .catch((err) => {
+      loading.value = false;
+      message.error(err.msg);
     });
 };
 
